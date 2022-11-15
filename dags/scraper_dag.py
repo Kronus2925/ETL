@@ -7,7 +7,7 @@ from airflow.utils.dates import days_ago
 from hurtownia import main
 
 default_args = {
-    'owner': 'airflow',
+    'owner': 'Jakub Kolsut',
     'depends_on_past': False,
     'start_date': datetime(2022, 11, 12),
     'email': ['airflow@example.com'],
@@ -20,17 +20,15 @@ default_args = {
 dag = DAG(
     'scraper_dag',
     default_args=default_args,
-    description='Our first DAG with ETL process!',
+    description='Automate python script',
     schedule_interval=timedelta(days=1),
 )
 
-def just_a_function():
-    print("I'm going to show you something :)")
 
 run_etl = PythonOperator(
-    task_id='whole_spotify_etl',
+    task_id='hurtownia',
     python_callable=main,
     dag=dag,
 )
 
-run_etl
+run_etl 
